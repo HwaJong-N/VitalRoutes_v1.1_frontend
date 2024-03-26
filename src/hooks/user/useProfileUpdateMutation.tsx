@@ -19,7 +19,7 @@ function useProfileUpdateMutation() {
     newPassword,
     email,
   }: ProfileUpdateForm) =>
-    axios.patch(`/member/profile/${memberId}`, {
+    axios.patch(`/member/profile`, {
       profile,
       memberId: String(memberId),
       name,
