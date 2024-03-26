@@ -34,6 +34,8 @@ function ChallengeDetailPage() {
           view: challenge.viewCount || 0,
           comment: challenge.totalParticipation || 0,
           like: 0,
+          likeFlag: challenge.likeFlag,
+          bookmarkFlag: challenge.bookmarkFlag
         }}
       />
       <div className="mx-auto flex max-w-[940px] flex-col items-center p-[21px] xl:p-0">

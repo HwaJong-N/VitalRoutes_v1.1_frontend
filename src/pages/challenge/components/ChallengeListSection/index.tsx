@@ -20,7 +20,6 @@ function ChallengeListSection() {
   const allPages = data?.pages.flat();
   const allChallenges = allPages?.map((page) => page.data).flat();
 
-
   if (isLoading) {
     return <BearLoading />;
   }
@@ -47,12 +46,14 @@ function ChallengeListSection() {
     <>
       <div className="grid gap-[24px] sm:grid-cols-2 xl:grid-cols-4">
         {allChallenges.map(
-          ({ challengeId, title, titleImg, participationCount }) => (
+          ({ challengeId, title, titleImg, participationCount, likeFlag, bookmarkFlag }) => (
             <ChallengeCard
               key={challengeId}
               imgSrc={titleImg}
               title={title}
               people={participationCount}
+              likeFlag={likeFlag}
+              bookmarkFlag={bookmarkFlag}
               onClick={() => {
                 navigate(`/challenge/${String(challengeId)}`);
               }}

@@ -6,10 +6,12 @@ interface Props {
   imgSrc: string;
   title: string;
   people: number;
+  likeFlag: boolean;
+  bookmarkFlag: boolean;
   onClick: () => void;
 }
 
-function ChallengeCard({ onClick, imgSrc, title, people }: Props) {
+function ChallengeCard({ onClick, imgSrc, title, people, likeFlag, bookmarkFlag }: Props) {
   const [isHover, setIsHover] = useState(false);
 
   const bookMark: MouseEventHandler<HTMLButtonElement> = (e) => {
@@ -67,11 +69,9 @@ function ChallengeCard({ onClick, imgSrc, title, people }: Props) {
               aria-label="book mark"
               onClick={bookMark}
             >
-              <Icon.Bookmark
-                className="fill-gray-50 group-hover:fill-gray-1"
-                width={32}
-                height={32}
-              />
+              {bookmarkFlag ?
+                <Icon.Bookmark className="fill-green-600 group-hover:fill-gray-1" width={32} height={32} />
+              : <Icon.Bookmark className="fill-gray-50 group-hover:fill-green-600" width={32} height={32} />}
             </button>
             <button
               className="group rounded-full bg-gray-1/30 p-[16px] backdrop-blur hover:bg-green-1"
@@ -79,11 +79,9 @@ function ChallengeCard({ onClick, imgSrc, title, people }: Props) {
               aria-label="like"
               onClick={like}
             >
-              <Icon.Like
-                className="fill-gray-50  group-hover:fill-gray-1"
-                width={32}
-                height={32}
-              />
+              {likeFlag ?
+                <Icon.Like className="fill-red-600  group-hover:fill-gray-1" width={32} height={32} />
+                : <Icon.Like className="fill-gray-50  group-hover:fill-red-600" width={32} height={32} />}
             </button>
           </div>
         </div>

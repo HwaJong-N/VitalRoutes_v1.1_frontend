@@ -44,6 +44,8 @@ function Banner({ className = '', title, subTitle, imgSrc, moreInfo }: Props) {
             view={moreInfo.view}
             comment={moreInfo.comment}
             like={moreInfo.like}
+            likeFlag={moreInfo.likeFlag}
+            bookmarkFlag={moreInfo.bookmarkFlag}
           />
         )}
       </div>

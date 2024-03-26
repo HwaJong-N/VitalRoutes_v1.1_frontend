@@ -32,8 +32,8 @@ export interface ChallengeDetail {
   viewCount: number;
   likeCount: number;
   bookmarkCount: number;
-  isLike: boolean;
-  isBookmark: boolean;
+  likeFlag: boolean;
+  bookmarkFlag: boolean;
   tagList: string[];
   titleImgURL: string;
   imageList: string[];
@@ -63,6 +63,8 @@ export interface Challenge {
       title: string;
       titleImg: string;
       participationCount: number;
+      likeFlag: boolean;
+      bookmarkFlag: boolean;
     },
   ];
   remainFlag: boolean;

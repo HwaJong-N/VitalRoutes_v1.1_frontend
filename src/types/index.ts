@@ -4,6 +4,8 @@ export interface MoreInfo {
   view: number;
   comment: number;
   like: number;
+  likeFlag: boolean;
+  bookmarkFlag: boolean;
 }
 
 export interface ServerResponse<T = null> {

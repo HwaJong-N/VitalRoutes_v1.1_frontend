@@ -12,6 +12,8 @@ function BannerMoreInfo({
   view,
   comment,
   like,
+  likeFlag,
+  bookmarkFlag,
   className,
 }: BannerMoreInfoProps) {
   return (
@@ -52,14 +54,21 @@ function BannerMoreInfo({
             type="button"
             aria-label="bookmark"
           >
-            <Icon.Bookmark className="h-[22px]  w-[22px] fill-gray-11  group-hover:fill-gray-1 xl:h-[40px] xl:w-[40px]" />
+            {bookmarkFlag ?
+              <Icon.Bookmark className="h-[22px]  w-[22px] fill-green-600  group-hover:fill-gray-1 xl:h-[40px] xl:w-[40px]" />
+              : <Icon.Bookmark className="h-[22px]  w-[22px] fill-gray-11  group-hover:fill-gray-1 xl:h-[40px] xl:w-[40px]" />
+            }
+
           </button>
           <button
             className="group flex h-[40px] w-[40px] items-center justify-center rounded-full bg-gray-1/30 hover:bg-gray-11 xl:h-[62px] xl:w-[62px]"
             type="button"
             aria-label="bookmark"
           >
-            <Icon.Like className="h-[22px] w-[22px] fill-gray-11  group-hover:fill-gray-1 xl:h-[40px] xl:w-[40px]" />
+            {likeFlag ?
+              <Icon.Like className="h-[22px] w-[22px] fill-red-600  group-hover:fill-gray-1 xl:h-[40px] xl:w-[40px]" />
+              : <Icon.Like className="h-[22px] w-[22px] fill-gray-11  group-hover:fill-gray-1 xl:h-[40px] xl:w-[40px]" />
+            }
           </button>
         </div>
       </div>
