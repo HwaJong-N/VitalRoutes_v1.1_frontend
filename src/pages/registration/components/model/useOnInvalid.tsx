@@ -12,15 +12,15 @@ function useOnInvalid() {
     titleImg,
     contents,
     type,
-    files,
+    spots,
   }) => {
     const errorMessage =
       titleImg?.message ||
       title?.message ||
       contents?.message ||
       type?.message ||
-      files?.at?.(0)?.files?.message ||
-      files?.at?.(1)?.files?.message ||
+      spots?.at?.(0)?.files?.message ||
+      spots?.at?.(1)?.files?.message ||
       null;
 
     if (errorMessage) {
