@@ -7,9 +7,13 @@ import BearLoading from '@/components/common/Loading/BearLoading';
 import Button from '@/components/common/Button';
 import useChallengeListInfinite from '@/hooks/challenge/useChallengeListInfinite';
 
-function ChallengeListSection() {
+interface Props {
+  selectedTag: string;
+}
+
+function ChallengeListSection({ selectedTag }: Props) {
   const { data, isLoading, hasNextPage, fetchNextPage } =
-    useChallengeListInfinite();
+    useChallengeListInfinite(selectedTag);
   const navigate = useNavigate();
   const { ref, inView } = useInView();
 

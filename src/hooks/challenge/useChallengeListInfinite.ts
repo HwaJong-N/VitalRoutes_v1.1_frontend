@@ -5,12 +5,12 @@ import axios from 'axios';
 import QUERY_KEY from '@/constants/queryKey';
 import { Challenge } from '@/types/challenge';
 
-function useChallengeListInfinite() {
-  const queryKey = [QUERY_KEY.challengeList];
+function useChallengeListInfinite(selectedTag: string) {
+  const queryKey = [QUERY_KEY.challengeList, selectedTag];
 
   const queryFn = async (page: number) => {
     const { data } = await axios.get<{ data: Challenge }>(
-      `/challenge/list?page=${page}`,
+      `/challenge/list?page=${page}&searchType=${selectedTag}`,
     );
     return data.data;
   };
