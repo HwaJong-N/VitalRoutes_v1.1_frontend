@@ -33,7 +33,7 @@ function ChallengeDetailPage() {
           nickname: challenge.nickname || '',
           view: challenge.viewCount || 0,
           comment: challenge.totalParticipation || 0,
-          like: 0,
+          like: challenge.likeCount,
           likeFlag: challenge.likeFlag,
           bookmarkFlag: challenge.bookmarkFlag
         }}
