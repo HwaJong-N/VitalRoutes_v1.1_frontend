@@ -21,29 +21,29 @@ function FilterSection() {
       >
         <Button
           variant="tab-a"
-          className={filter === 'myChallenge' ? ACTIVE_COLOR : undefined}
-          onClick={() => setFilter('myChallenge')}
+          className={filter === 'my-challenges' ? ACTIVE_COLOR : undefined}
+          onClick={() => setFilter('my-challenges')}
         >
           나의 챌린지
         </Button>
         <Button
           variant="tab-a"
-          className={filter === 'participated' ? ACTIVE_COLOR : undefined}
-          onClick={() => setFilter('participated')}
+          className={filter === 'participate-challenges' ? ACTIVE_COLOR : undefined}
+          onClick={() => setFilter('participate-challenges')}
         >
           참여 중인 챌린지
         </Button>
         <Button
           variant="tab-a"
-          className={filter === 'liked' ? ACTIVE_COLOR : undefined}
-          onClick={() => setFilter('liked')}
+          className={filter === 'like-challenges' ? ACTIVE_COLOR : undefined}
+          onClick={() => setFilter('like-challenges')}
         >
           좋아요한 챌린지
         </Button>
         <Button
           variant="tab-a"
-          className={filter === 'bookmarked' ? ACTIVE_COLOR : undefined}
-          onClick={() => setFilter('bookmarked')}
+          className={filter === 'bookmark-challenges' ? ACTIVE_COLOR : undefined}
+          onClick={() => setFilter('bookmark-challenges')}
         >
           북마크한 챌린지
         </Button>

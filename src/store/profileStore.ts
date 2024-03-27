@@ -6,6 +6,6 @@ interface FilterState {
 }
 
 export const useFilterStore = create<FilterState>((set) => ({
-  filter: 'myChallenge',
+  filter: 'my-challenges',
   setFilter: (filter) => set({ filter }),
 }));
