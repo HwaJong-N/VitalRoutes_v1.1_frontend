@@ -1,5 +1,4 @@
 import Banner from '@/components/common/Banner';
-import HealthCareSection from './components/HealthCareSection';
 import IntroSection from './components/IntroSection';
 import RegisterSection from './components/RegisterSection';
 import SlideSection from './components/SlideSection';
@@ -16,7 +15,6 @@ function HomePage() {
       <IntroSection />
       <SlideSection />
       <RegisterSection />
-      <HealthCareSection />
     </div>
   );
 }

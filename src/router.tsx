@@ -5,7 +5,6 @@ import ChallengeListPage from './pages/challenge/page';
 import ChallengeDetailPage from './pages/detail/page';
 import RegistrationPage from './pages/registration/page';
 import ProfilePage from './pages/profile/page';
-import WellnessPage from './pages/wellness/page';
 import TestPage from './pages/test/page';
 import LoginPage from './pages/login/page';
 import FindPw from './pages/login/findpassword';
@@ -67,7 +66,6 @@ const router = createBrowserRouter([
           </WithAuthorization>
         ),
       },
-      { path: '/wellness', element: <WellnessPage /> },
       {
         path: 'login',
         element: <LoginPage />,

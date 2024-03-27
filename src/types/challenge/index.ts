@@ -20,6 +20,13 @@ export interface ChallengeRegistrationRequest {
   tags: string[];
 }
 
+export interface ImageInfo {
+  sequence: number;
+  imageURL: string;
+  latitude: number;
+  longitude: number;
+}
+
 export interface ChallengeDetail {
   challengeId: number;
   memberId: number;
@@ -36,7 +43,7 @@ export interface ChallengeDetail {
   bookmarkFlag: boolean;
   tagList: string[];
   titleImgURL: string;
-  imageList: string[];
+  imageList: ImageInfo[];
 }
 
 export interface Comment {
