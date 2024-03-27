@@ -1,8 +1,12 @@
-import { MouseEventHandler, useState } from 'react';
+import { MouseEventHandler, useEffect, useState } from 'react';
 import Icon from '@/components/icons';
 import ChallengeCardSkeleton from './ChallengeCardSkeleton';
+import useLike from '@/hooks/challenge/useLike.ts';
+import useBookmark from '@/hooks/challenge/useBookmark.ts';
+import { useQueryClient } from '@tanstack/react-query';
 
 interface Props {
+  challengeId: number;
   imgSrc: string;
   title: string;
   people: number;
@@ -11,24 +15,38 @@ interface Props {
   onClick: () => void;
 }
 
-function ChallengeCard({ onClick, imgSrc, title, people, likeFlag, bookmarkFlag }: Props) {
+function ChallengeCard({ onClick, challengeId, imgSrc, title, people, likeFlag: initialLikeFlag, bookmarkFlag: initialBookmarkFlag }: Props) {
   const [isHover, setIsHover] = useState(false);
+  const { mutate: likeMutate, isSuccess: likeSuccess } = useLike(challengeId || -1);
+  const { mutate: bookmarkMutate, isSuccess: bookmarkSuccess } = useBookmark(challengeId || -1);
+  const [likeFlag, setLikeFlag] = useState(initialLikeFlag);
+  const [bookmarkFlag, setBookmarkFlag] = useState(initialBookmarkFlag);
+  const queryClient = useQueryClient();
+
+
+  useEffect(() => {
+    if (likeSuccess) {
+      queryClient.clear();
+      setLikeFlag(!likeFlag);
+    } else if (bookmarkSuccess) {
+      queryClient.clear();
+      setBookmarkFlag(!bookmarkFlag);
+    }
+  }, [likeSuccess, bookmarkSuccess]);
 
   const bookMark: MouseEventHandler<HTMLButtonElement> = (e) => {
-    // eslint-disable-next-line no-alert
-    alert('기능 개발 중입니다.'); // 임시 처리
     e.stopPropagation();
+    bookmarkMutate();
   };
 
   const like: MouseEventHandler<HTMLButtonElement> = (e) => {
-    // eslint-disable-next-line no-alert
-    alert('기능 개발 중입니다.'); // 임시 처리
     e.stopPropagation();
+    likeMutate();
   };
 
   const lookMoreOption: MouseEventHandler<HTMLButtonElement> = (e) => {
-    // eslint-disable-next-line no-alert
-    alert('기능 개발 중입니다.'); // 임시 처리
+    // 점 3개 눌렀을 때 동작하는듯
+    alert('기능 개발 중입니다.');
     e.stopPropagation();
   };
 

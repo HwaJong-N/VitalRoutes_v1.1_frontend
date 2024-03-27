@@ -49,6 +49,7 @@ function ChallengeListSection() {
           ({ challengeId, title, titleImg, participationCount, likeFlag, bookmarkFlag }) => (
             <ChallengeCard
               key={challengeId}
+              challengeId={challengeId}
               imgSrc={titleImg}
               title={title}
               people={participationCount}
