@@ -7,6 +7,7 @@ import useCommentModifyMutation from '@/hooks/challenge/useCommentModifyMutation
 import { storeFamilyCommentMode } from '@/store/challenge/commentStore';
 
 interface Props {
+  memberId: number;
   profileImgSrc: string;
   nickname: string;
   content: string;
@@ -17,6 +18,7 @@ interface Props {
 
 function Comment({
   id,
+  memberId,
   profileImgSrc,
   nickname,
   content,
@@ -56,7 +58,7 @@ function Comment({
               <span className="font-bold">{nickname}</span>
               <span className="text-[13px] text-gray-2">{date}</span>
             </div>
-            <SelectButton selectPopup={<CommentSelectPopup id={id} />} />
+            <SelectButton selectPopup={<CommentSelectPopup id={id} memberId={memberId} />} />
           </div>
           {mode === 'view' && <p className="text-sm">{content}</p>}
           {mode === 'modify' && (

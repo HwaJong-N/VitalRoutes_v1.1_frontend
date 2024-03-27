@@ -43,6 +43,7 @@ function CommentSection({ className }: Props) {
       {filterdComments.map(
         ({
           participationId,
+          memberId,
           memberProfile,
           nickname,
           participationImages,
@@ -57,6 +58,7 @@ function CommentSection({ className }: Props) {
             >
               <Comment
                 id={participationId}
+                memberId={memberId}
                 profileImgSrc={memberProfile}
                 nickname={nickname}
                 content={content}

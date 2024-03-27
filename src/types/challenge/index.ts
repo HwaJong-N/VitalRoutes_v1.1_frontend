@@ -43,6 +43,7 @@ export interface Comment {
   data: [
     {
       participationId: number;
+      memberId: number;
       memberProfile: string;
       nickname: string;
       content: string;
