@@ -79,7 +79,7 @@ const router = createBrowserRouter([
         element: <FindPw />,
       },
       {
-        path: '/login/kakaoLogin',
+        path: '/member/kakao',
         element: <KakaoLogin />,
       },
     ],

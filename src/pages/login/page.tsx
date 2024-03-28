@@ -64,9 +64,9 @@ function LoginPage() {
         <Modal
           isOpen={socialLoginModalOpen}
           onClose={socialLoginToggle}
-          title="소셜로그인"
+          title=""
         >
-          <a href={`${API_URL}/login/kakaoLogin`}>
+          <a href={`${API_URL}/oauth2/kakao`}>
             <img
               src={getImageUrl('login/kakao_login_medium_wide.png')}
               alt="kakaoLogin"

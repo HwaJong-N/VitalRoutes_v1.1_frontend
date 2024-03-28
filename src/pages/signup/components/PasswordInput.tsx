@@ -30,8 +30,7 @@ function NameInput() {
         errorMessage={errors.password?.message}
       />
       <span className="text-[13px] tracking-tight text-gray-2">
-        비밀번호는 8~16자리이며, 대문자, 소문자, 숫자 중 최소 2종류를
-        포함해야합니다.
+        비밀번호는 8~20자리이며, 대문자, 소문자, 숫자를 모두 포함해야합니다.
       </span>
     </div>
   );
