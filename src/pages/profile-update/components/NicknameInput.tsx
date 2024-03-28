@@ -1,5 +1,4 @@
 import { useFormContext } from 'react-hook-form';
-import Button from '@/components/common/Button';
 import Input from '@/components/common/Input';
 import { ProfileUpdateForm } from '@/types/user';
 import REGEXP from '@/constants/regexp';
@@ -19,7 +18,6 @@ function NicknameInput() {
       <Input
         label="닉네임"
         placeholder="김루트"
-        button={<Button variant="third-b">중복 인증</Button>}
         {...nicknameRegister}
       />
       <div className="mt-[16px] text-[13px] text-gray-2">

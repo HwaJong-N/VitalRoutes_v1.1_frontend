@@ -6,6 +6,7 @@ import { ProfileUpdateForm } from '@/types/user';
 import usePopup from '../usePopup';
 import Popup from '@/components/common/Popup';
 import Button from '@/components/common/Button';
+import { ServerResponse } from '@/types';
 
 function useProfileUpdateMutation() {
   const { openPopup, closePopup } = usePopup();
@@ -27,12 +28,13 @@ function useProfileUpdateMutation() {
       email,
       prePassword,
       newPassword,
-    });
-  const onSuccess = () => {
+    }).then(response => response.data as ServerResponse);
+
+  const onSuccess = (data: ServerResponse) => {
     openPopup(
       <Popup
-        content="프로필 수정이 완료되었습니다."
-        subContent="수정하신 내용이 반영되었습니다."
+        content={data.message}
+        subContent=""
         buttons={
           <Button
             variant="popup-point"

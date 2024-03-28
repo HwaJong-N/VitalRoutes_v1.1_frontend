@@ -10,14 +10,12 @@ function PasswordInput() {
   } = useFormContext<ProfileUpdateForm>();
 
   const prePasswordRegister = register('prePassword', {
-    required: '※ 비밀번호 입력란이 비어있습니다.',
     pattern: {
       value: REGEXP.password,
       message: '※ 올바른 비밀번호 형식에 맞게 작성해주세요.',
     },
   });
   const newPasswordRegister = register('newPassword', {
-    required: '※ 비밀번호 입력란이 비어있습니다.',
     pattern: {
       value: REGEXP.password,
       message: '※ 올바른 비밀번호 형식에 맞게 작성해주세요.',

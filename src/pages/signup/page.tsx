@@ -10,6 +10,8 @@ import EmailInput from './components/EmailInput';
 import PasswordInput from './components/PasswordInput';
 import useSignupMutation from '@/hooks/user/useSignup';
 import CheckboxInput from './components/CheckboxInput';
+import usePopup from '@/hooks/usePopup.ts';
+import Popup from '@/components/common/Popup.tsx';
 
 function SignUp() {
   const methods = useForm<SignUpForm>();
@@ -17,9 +19,21 @@ function SignUp() {
   const setUserValues = userInfoStore((state) => state.setuserValues);
   const { isValid: nicknameValidation } = useNicknameValidStore();
   const { mutate, isPending } = useSignupMutation();
+  const { openPopup, closePopup } = usePopup();
 
   const onSubmit = async (data: SignUpForm) => {
     if (!nicknameValidation) {
+      openPopup(
+        <Popup
+          content="닉네임 중복확인을 진행해주세요"
+          subContent=""
+          buttons={
+            <Button variant="popup" onClick={closePopup}>
+              확인
+            </Button>
+          }
+        />
+      );
       return;
     }
     setUserValues(data);
