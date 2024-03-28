@@ -3,12 +3,9 @@ import { useFormContext } from 'react-hook-form';
 import usePopup from '@/hooks/usePopup';
 import { getGpsFromImg } from '@/utils/ExifReader';
 import GeolocationErrorPopup from './GeolocationErrorPopup';
-import { useGpsNotfoundNoticeStore } from '@/store/challenge/writeStor';
-import NotfoundGPSPopup from './NotfoundGPSPopup';
 import { ChallengeRegisterationForm } from '@/types/posts';
 
 function useSpotRegister() {
-  const { isNoticed, setIsNoticed } = useGpsNotfoundNoticeStore();
   const { openPopup } = usePopup();
   const { register, setValue, resetField } =
     useFormContext<ChallengeRegisterationForm>();
@@ -27,10 +24,6 @@ function useSpotRegister() {
         setValue(`spots.${index}.lat`, lat);
         setValue(`spots.${index}.lng`, lng);
       } catch (error) {
-        if (!isNoticed) {
-          openPopup(<NotfoundGPSPopup />);
-          setIsNoticed(true);
-        }
         navigator.geolocation.getCurrentPosition(
           (position) => {
             const { longitude, latitude } = position.coords;

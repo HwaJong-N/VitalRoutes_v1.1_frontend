@@ -13,6 +13,7 @@ import View from '@/assets/icons/view.svg?react';
 import Camera from '@/assets/icons/camera.svg?react';
 import Walk from '@/assets/icons/walk.svg?react';
 import Search from '@/assets/icons/search.svg?react';
+import Location from '@/assets/icons/location.svg?react';
 
 const Icon = {
   Close,
@@ -30,6 +31,7 @@ const Icon = {
   Walk,
   Bicycle,
   Search,
+  Location,
 };
 
 export default Icon;
