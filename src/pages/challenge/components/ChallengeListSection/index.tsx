@@ -9,11 +9,12 @@ import useChallengeListInfinite from '@/hooks/challenge/useChallengeListInfinite
 
 interface Props {
   selectedTag: string;
+  searchQuery: string;
 }
 
-function ChallengeListSection({ selectedTag }: Props) {
+function ChallengeListSection({ selectedTag, searchQuery }: Props) {
   const { data, isLoading, hasNextPage, fetchNextPage } =
-    useChallengeListInfinite(selectedTag);
+    useChallengeListInfinite(selectedTag, searchQuery);
   const navigate = useNavigate();
   const { ref, inView } = useInView();
 

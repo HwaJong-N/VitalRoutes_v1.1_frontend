@@ -12,6 +12,7 @@ import Comment from '@/assets/icons/comment.svg?react';
 import View from '@/assets/icons/view.svg?react';
 import Camera from '@/assets/icons/camera.svg?react';
 import Walk from '@/assets/icons/walk.svg?react';
+import Search from '@/assets/icons/search.svg?react';
 
 const Icon = {
   Close,
@@ -28,6 +29,7 @@ const Icon = {
   Camera,
   Walk,
   Bicycle,
+  Search,
 };
 
 export default Icon;
