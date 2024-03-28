@@ -3,14 +3,17 @@ import { useForm } from 'react-hook-form';
 import Input from '@/components/common/Input';
 import Button from '@/components/common/Button';
 import { getImageUrl } from '@/utils/getImageUrl';
+import axios, { AxiosResponse } from 'axios';
+import { ServerResponse } from '@/types';
+import Popup from '@/components/common/Popup.tsx';
+import usePopup from '@/hooks/usePopup.ts';
 
 interface FormValues {
-  username: string;
-  name: string;
   email: string;
 }
 
 function FindPw() {
+  const { openPopup, closePopup } = usePopup();
   const methods = useForm<FormValues>();
   const {
     register,
@@ -18,7 +21,22 @@ function FindPw() {
     formState: { errors },
   } = methods;
 
-  const onSubmit = () => {};
+  const onSubmit = async (data: FormValues) => {
+    const response: AxiosResponse<ServerResponse> = await axios.post('/member/password', { email: data.email });
+    const serverResponse: ServerResponse = response.data;
+    openPopup(
+      <Popup
+        content={serverResponse.message}
+        subContent=""
+        buttons={
+          <Button variant="popup" onClick={closePopup}>
+            확인
+          </Button>
+        }
+      />
+    );
+  };
+
   return (
     <div>
       <div className="flex h-screen items-center justify-center">

@@ -8,6 +8,7 @@ import ProfilePage from './pages/profile/page';
 import TestPage from './pages/test/page';
 import LoginPage from './pages/login/page';
 import FindPw from './pages/login/findpassword';
+import PasswordReset from './pages/login/passwordReset';
 import KakaoLogin from './pages/login/components/kakaoLogin';
 import ProfileUpdatePage from './pages/profile-update/page';
 import SignUpPage from './pages/signup/page';
@@ -81,6 +82,10 @@ const router = createBrowserRouter([
       {
         path: '/member/kakao',
         element: <KakaoLogin />,
+      },
+      {
+        path: '/login/reset-password/:id',
+        element: <PasswordReset />,
       },
     ],
   },
