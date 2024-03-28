@@ -35,6 +35,8 @@ export interface ChallengeDetail {
   title: string;
   content: string;
   type: string;
+  roadAddress: string;
+  region: string;
   totalParticipation: number;
   viewCount: number;
   likeCount: number;

@@ -50,9 +50,14 @@ function CommentSelectPopup({ id, memberId }: Props) {
           </button>
         </>
         :
-        <button type="button">
-          댓글 신고
-        </button>
+        <>
+          <button type="button">
+            댓글 숨기기
+          </button>
+          <button type="button">
+            댓글 신고
+          </button>
+        </>
       }
     </SelectionPopup>
   )

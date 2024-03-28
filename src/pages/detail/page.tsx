@@ -28,6 +28,7 @@ function ChallengeDetailPage() {
         title={challenge.title}
         subTitle={`${challenge.totalParticipation}명이 참가중`}
         imgSrc={challenge.titleImgURL}
+        region={challenge.region}
         moreInfo={{
           profileImge: challenge.profileImg,
           nickname: challenge.nickname || '',
@@ -40,6 +41,7 @@ function ChallengeDetailPage() {
       />
       <div className="mx-auto flex max-w-[940px] flex-col items-center p-[21px] xl:p-0">
         <div className="my-[120px] flex w-full flex-col items-center  gap-[52px]">
+          <div className="font-bold">{challenge.roadAddress}</div>
           <div className="h-[360px] w-full overflow-hidden rounded-[30px]">
             <KaKaoMap spots={challenge.imageList} />
           </div>
