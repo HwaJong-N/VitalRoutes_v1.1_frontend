@@ -1,21 +1,55 @@
 import { twMerge } from 'tailwind-merge';
 import Icon from '@/components/icons';
 import { MoreInfo } from '@/types';
+import { MouseEventHandler, useEffect, useState } from 'react';
+import useLike from '@/hooks/challenge/useLike.ts';
+import useBookmark from '@/hooks/challenge/useBookmark.ts';
+import { useQueryClient } from '@tanstack/react-query';
 
 interface BannerMoreInfoProps extends MoreInfo {
   className?: string;
 }
 
 function BannerMoreInfo({
+  challengeId,
   profileImge,
   nickname,
   view,
   comment,
   like,
-  likeFlag,
-  bookmarkFlag,
+  likeFlag: initialLikeFlag,
+  bookmarkFlag: initialBookmarkFlag,
   className,
 }: BannerMoreInfoProps) {
+
+  const { mutate: likeMutate, isSuccess: likeSuccess } = useLike(challengeId || -1);
+  const { mutate: bookmarkMutate, isSuccess: bookmarkSuccess } = useBookmark(challengeId || -1);
+  const [likeFlag, setLikeFlag] = useState(initialLikeFlag);
+  const [bookmarkFlag, setBookmarkFlag] = useState(initialBookmarkFlag);
+  const queryClient = useQueryClient();
+
+
+  useEffect(() => {
+    if (likeSuccess) {
+      queryClient.clear();
+      setLikeFlag(!likeFlag);
+    } else if (bookmarkSuccess) {
+      queryClient.clear();
+      setBookmarkFlag(!bookmarkFlag);
+    }
+  }, [likeSuccess, bookmarkSuccess]);
+
+  const bookMarkBtn: MouseEventHandler<HTMLButtonElement> = (e) => {
+    e.stopPropagation();
+    bookmarkMutate();
+  };
+
+  const likeBtn: MouseEventHandler<HTMLButtonElement> = (e) => {
+    e.stopPropagation();
+    likeMutate();
+  };
+  
+
   return (
     <div
       className={twMerge(
@@ -53,6 +87,7 @@ function BannerMoreInfo({
             className="group flex h-[40px] w-[40px] items-center justify-center rounded-full bg-gray-1/30 hover:bg-gray-11 xl:h-[62px] xl:w-[62px]"
             type="button"
             aria-label="bookmark"
+            onClick={bookMarkBtn}
           >
             {bookmarkFlag ?
               <Icon.Bookmark className="h-[22px]  w-[22px] fill-green-600  group-hover:fill-gray-1 xl:h-[40px] xl:w-[40px]" />
@@ -64,6 +99,7 @@ function BannerMoreInfo({
             className="group flex h-[40px] w-[40px] items-center justify-center rounded-full bg-gray-1/30 hover:bg-gray-11 xl:h-[62px] xl:w-[62px]"
             type="button"
             aria-label="bookmark"
+            onClick={likeBtn}
           >
             {likeFlag ?
               <Icon.Like className="h-[22px] w-[22px] fill-red-600  group-hover:fill-gray-1 xl:h-[40px] xl:w-[40px]" />

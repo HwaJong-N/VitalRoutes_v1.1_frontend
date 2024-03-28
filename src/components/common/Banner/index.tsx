@@ -42,6 +42,7 @@ function Banner({ className = '', title, subTitle, imgSrc, region, moreInfo }: P
         {moreInfo && (
           <BannerMoreInfo
             className="absolute bottom-[24px] w-full px-[25px] xl:bottom-[182px] xl:p-0"
+            challengeId={moreInfo.challengeId}
             profileImge={moreInfo.profileImge}
             nickname={moreInfo.nickname}
             view={moreInfo.view}

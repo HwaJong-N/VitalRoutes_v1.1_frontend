@@ -1,4 +1,5 @@
 export interface MoreInfo {
+  challengeId: number;
   profileImge: string;
   nickname: string;
   view: number;

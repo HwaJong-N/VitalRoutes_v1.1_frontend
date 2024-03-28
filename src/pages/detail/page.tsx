@@ -30,6 +30,7 @@ function ChallengeDetailPage() {
         imgSrc={challenge.titleImgURL}
         region={challenge.region}
         moreInfo={{
+          challengeId: challenge.challengeId,
           profileImge: challenge.profileImg,
           nickname: challenge.nickname || '',
           view: challenge.viewCount || 0,
