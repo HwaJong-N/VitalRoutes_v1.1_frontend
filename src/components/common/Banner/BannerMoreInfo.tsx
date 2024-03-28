@@ -16,7 +16,7 @@ function BannerMoreInfo({
   nickname,
   view,
   comment,
-  like,
+  like: likeCount,
   likeFlag: initialLikeFlag,
   bookmarkFlag: initialBookmarkFlag,
   className,
@@ -26,12 +26,18 @@ function BannerMoreInfo({
   const { mutate: bookmarkMutate, isSuccess: bookmarkSuccess } = useBookmark(challengeId || -1);
   const [likeFlag, setLikeFlag] = useState(initialLikeFlag);
   const [bookmarkFlag, setBookmarkFlag] = useState(initialBookmarkFlag);
+  const [like, setLike] = useState(likeCount);
   const queryClient = useQueryClient();
 
 
   useEffect(() => {
     if (likeSuccess) {
       queryClient.clear();
+      if (likeFlag) {
+        setLike(like - 1);
+      } else {
+        setLike(like + 1);
+      }
       setLikeFlag(!likeFlag);
     } else if (bookmarkSuccess) {
       queryClient.clear();
@@ -48,7 +54,7 @@ function BannerMoreInfo({
     e.stopPropagation();
     likeMutate();
   };
-  
+
 
   return (
     <div
