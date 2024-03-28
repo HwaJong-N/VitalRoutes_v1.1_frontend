@@ -8,6 +8,11 @@ export interface ProfileUpdateForm {
   newPassword: string;
 }
 
+export interface ProfileImageUpdateForm {
+  profileImage: File;
+}
+
+
 export interface SignUpForm {
   name: string;
   nickname: string;
