@@ -11,6 +11,7 @@ import BearLoading from '@/components/common/Loading/BearLoading';
 import { useLoginStore } from '@/store/user/loginInfoStore';
 import SelectButton from '@/components/units/Select.tsx';
 import ChallengeSelectPopup from '@/pages/detail/components/ChallengePopup/ChallengeSelectPopup.tsx';
+import TransportSection from '@/pages/detail/components/TransportSection.tsx';
 
 function ChallengeDetailPage() {
   const { isLogin } = useLoginStore();
@@ -64,6 +65,7 @@ function ChallengeDetailPage() {
           </div>
           <ImageSection />
           <DescSection />
+          <TransportSection />
           <TagSection />
           <div className="flex w-full flex-col items-end gap-[56px]">
             {challenge.memberId !== loginId &&

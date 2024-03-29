@@ -35,7 +35,7 @@ function Banner({ className = '', title, subTitle, imgSrc, region, moreInfo }: P
         {title && subTitle && (
           <div className="absolute left-[21px] top-[175px] xl:left-0 xl:top-[420px]">
             {region && (
-              <div className='flex items-center rounded-full font-bold px-4 py-2 bg-white text-[16px] max-w-[calc(100%-470px)] mb-3'>
+              <div className='flex items-center rounded-full font-bold px-4 py-2 bg-white text-[16px] max-w-[calc(21%)] mb-3'>
                 <Icon.Location className="mr-2 h-6 w-6" />
                 <span className="align-middle">{region}</span>
               </div>

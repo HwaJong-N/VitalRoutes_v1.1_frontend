@@ -22,3 +22,11 @@ export interface ChallengeRegisterationForm {
   spots: Array<Spot | undefined>;
   tags: Array<string | false>;
 }
+
+
+export interface ChallengeUpdateForm {
+  title: string;
+  content: string;
+  type: '도보' | '자전거';
+  tags: string[];
+}

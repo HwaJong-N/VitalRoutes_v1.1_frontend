@@ -34,7 +34,7 @@ export interface ChallengeDetail {
   nickname: string;
   title: string;
   content: string;
-  type: string;
+  type: '도보' | '자전거';
   roadAddress: string;
   region: string;
   totalParticipation: number;

@@ -13,6 +13,7 @@ import KakaoLogin from './pages/login/components/kakaoLogin';
 import ProfileUpdatePage from './pages/profile-update/page';
 import SignUpPage from './pages/signup/page';
 import WithAuthorization from './app/WithAuthorization';
+import ChallengeEditPage from '@/pages/detail/components/ChallengeEditor/page.tsx';
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,14 @@ const router = createBrowserRouter([
               <ChallengeDetailPage />
             </WithAuthorization>
           )
+      },
+      {
+        path: 'challenge/modify/:id',
+        element: (
+          <WithAuthorization>
+            <ChallengeEditPage />
+          </WithAuthorization>
+        )
       },
       {
         path: 'registration',
