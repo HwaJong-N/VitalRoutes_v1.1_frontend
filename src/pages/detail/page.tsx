@@ -9,10 +9,19 @@ import CommentEditor from './components/CommentEditor';
 import useChallengeDetail from '@/hooks/challenge/useChallengeDetail';
 import BearLoading from '@/components/common/Loading/BearLoading';
 import { useLoginStore } from '@/store/user/loginInfoStore';
+import SelectButton from '@/components/units/Select.tsx';
+import ChallengeSelectPopup from '@/pages/detail/components/ChallengePopup/ChallengeSelectPopup.tsx';
 
 function ChallengeDetailPage() {
   const { isLogin } = useLoginStore();
   const { data: challenge, isLoading } = useChallengeDetail();
+  const userInfo = localStorage.getItem('loginInfo');
+  let loginId = 0;
+
+  if (userInfo) {
+    const parsedInfo = JSON.parse(userInfo);
+    loginId = parsedInfo.memberId;
+  }
 
   if (isLoading)
     return (
@@ -37,12 +46,19 @@ function ChallengeDetailPage() {
           comment: challenge.totalParticipation || 0,
           like: challenge.likeCount,
           likeFlag: challenge.likeFlag,
-          bookmarkFlag: challenge.bookmarkFlag
+          bookmarkFlag: challenge.bookmarkFlag,
         }}
       />
       <div className="mx-auto flex max-w-[940px] flex-col items-center p-[21px] xl:p-0">
         <div className="my-[120px] flex w-full flex-col items-center  gap-[52px]">
-          <div className="font-bold">{challenge.roadAddress}</div>
+          <div className="flex w-full justify-between items-center">
+            <div className="flex-grow text-center font-bold">{challenge.roadAddress}</div>
+            {challenge.memberId === loginId &&
+              <div>
+                <SelectButton selectPopup={<ChallengeSelectPopup challengeId={challenge.challengeId} />} />
+              </div>
+            }
+          </div>
           <div className="h-[360px] w-full overflow-hidden rounded-[30px]">
             <KaKaoMap spots={challenge.imageList} />
           </div>
@@ -50,12 +66,14 @@ function ChallengeDetailPage() {
           <DescSection />
           <TagSection />
           <div className="flex w-full flex-col items-end gap-[56px]">
-            <button
-              type="button"
-              className="text-sm text-gray-3 hover:underline xl:text-base"
-            >
-              게시글 신고하기
-            </button>
+            {challenge.memberId !== loginId &&
+              <button
+                type="button"
+                className="text-sm text-gray-3 hover:underline xl:text-base"
+              >
+                게시글 신고하기
+              </button>
+            }
             {isLogin ? (
               <>
                 <CommentEditor />

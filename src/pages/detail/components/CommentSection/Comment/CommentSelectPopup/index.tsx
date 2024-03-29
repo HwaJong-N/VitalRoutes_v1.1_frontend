@@ -43,19 +43,19 @@ function CommentSelectPopup({ id, memberId }: Props) {
       {loginId === memberId ?
         <>
           <button type="button" onClick={modifyComment}>
-            댓글 수정
+            수정하기
           </button>
           <button type="button" onClick={deleteComment}>
-            댓글 삭제
+            삭제하기
           </button>
         </>
         :
         <>
           <button type="button">
-            댓글 숨기기
+            댓글 작성
           </button>
           <button type="button">
-            댓글 신고
+            신고하기
           </button>
         </>
       }

@@ -1,67 +1,40 @@
 import SelectionPopup from '@/components/common/SelectionPopup';
-import useCommentDeleteMutation from '@/hooks/challenge/useCommentDeleteMutation';
-import usePopup from '@/hooks/usePopup';
-import DeletePopup from './DeletePopup';
-import { storeFamilyCommentMode } from '@/store/challenge/commentStore';
+import useChallengeDeleteMutation from '@/hooks/challenge/useChallengeDeleteMutation.ts';
+import usePopup from '@/hooks/usePopup.ts';
+import ChallengeDeletePopup from '@/pages/detail/components/ChallengePopup/ChallengeDeletePopup.tsx';
 
 interface Props {
-  id: number;
-  memberId: number;
+  challengeId: number;
 }
 
-function ChallengeSelectPopup({ id, memberId }: Props) {
-  const useCommentModeStore = storeFamilyCommentMode(id);
-  const { mutate: mutateDeletion } = useCommentDeleteMutation(id);
-  const { setMode } = useCommentModeStore();
+function ChallengeSelectPopup({ challengeId }: Props) {
+  const { mutate: mutateDeletion } = useChallengeDeleteMutation(challengeId);
   const { openPopup, closePopup } = usePopup();
-  const userInfo = localStorage.getItem('loginInfo');
-  let loginId = 0;
 
-  if (userInfo) {
-    const parsedInfo = JSON.parse(userInfo);
-    loginId = parsedInfo.memberId;
-  }
-
-  const deleteComment = () => {
+  const deleteChallenge = () => {
     openPopup(
-      <DeletePopup
-        onCancleClick={closePopup}
-    onConfirmClick={() => {
-      mutateDeletion();
-      closePopup();
-    }}
-    />,
-  );
+      <ChallengeDeletePopup
+        onCancelClick={closePopup}
+        onConfirmClick={() => {
+          mutateDeletion();
+          closePopup();
+        }}
+      />,
+    );
   };
 
-  const modifyComment = () => {
-    setMode('modify');
-  };
 
   return (
     <SelectionPopup>
-      {loginId === memberId ?
-      <>
-        <button type="button" onClick={modifyComment}>
+      <button type="button">
         수정하기
-        </button>
-        <button type="button" onClick={deleteComment}>
-    삭제하기
-    </button>
-    </>
-:
-  <>
-    <button type="button">
-    댓글 작성
-  </button>
-  <button type="button">
-    신고하기
-    </button>
-    </>
-}
-  </SelectionPopup>
-)
-  ;
+      </button>
+      <button type="button" onClick={deleteChallenge}>
+        삭제하기
+      </button>
+    </SelectionPopup>
+  )
+    ;
 }
 
 export default ChallengeSelectPopup;

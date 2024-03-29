@@ -44,12 +44,6 @@ function ChallengeCard({ onClick, challengeId, imgSrc, title, people, likeFlag: 
     likeMutate();
   };
 
-  const lookMoreOption: MouseEventHandler<HTMLButtonElement> = (e) => {
-    // 점 3개 눌렀을 때 동작하는듯
-    alert('기능 개발 중입니다.');
-    e.stopPropagation();
-  };
-
   return (
     <div
       className="relative flex h-[256px] w-[318px] cursor-pointer flex-col items-center overflow-hidden rounded-[30px] bg-gradient-to-r from-black/20 to-black/0 hover:from-black/40 hover:to-black/0"
@@ -71,8 +65,8 @@ function ChallengeCard({ onClick, challengeId, imgSrc, title, people, likeFlag: 
         <h1 className=" line-clamp-2 w-[228px] break-keep text-[24px] font-bold  leading-[160%] text-white">
           {title}
         </h1>
-        <button aria-label="more-option" type="button" onClick={lookMoreOption}>
-          <Icon.Kebab className="fill-gray-11" width={40} height={40} />
+        <button aria-label="more-option" type="button" >
+          <Icon.Kebab className="text-transparent" width={40} height={40} />
         </button>
       </div>
       {isHover && (
