@@ -5,5 +5,6 @@ const QUERY_KEY = {
   bookmark: 'bookmark',
   comment: 'comment',
   profile: 'profile',
+  reply: 'reply',
 };
 export default QUERY_KEY;

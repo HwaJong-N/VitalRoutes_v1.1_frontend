@@ -80,3 +80,19 @@ export interface Challenge {
   remainFlag: boolean;
   totalCount: number;
 }
+
+
+export interface Reply {
+  data: [
+    {
+      commentId: number;
+      memberId: number;
+      memberProfile: string;
+      nickname: string;
+      content: string;
+      timeString: string;
+    },
+  ];
+  remainFlag: boolean;
+  totalCount: number;
+}

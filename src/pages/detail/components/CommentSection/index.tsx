@@ -1,6 +1,6 @@
 import { twMerge } from 'tailwind-merge';
 import { useParams } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import Comment from './Comment';
 import SpotSlide from './SpotSlide';
@@ -8,6 +8,7 @@ import useComment from '@/hooks/challenge/useComment';
 import { Comment as CommentType } from '@/types/challenge';
 import MoreButton from '@/components/units/MoreButton';
 import BearLoading from '@/components/common/Loading/BearLoading';
+import ReplySection from '@/pages/detail/components/ReplySection';
 
 interface Props {
   className?: string;
@@ -17,6 +18,7 @@ function CommentSection({ className }: Props) {
   const { id } = useParams<{ id: string }>();
   const { data, isLoading, fetchNextPage, hasNextPage } = useComment(id || '0');
   const { ref, inView } = useInView();
+  const [viewReply, setViewReply] = useState(false);
 
   useEffect(() => {
     if (hasNextPage && inView) fetchNextPage();
@@ -32,6 +34,10 @@ function CommentSection({ className }: Props) {
   );
 
   if (filterdComments.length === 0) return null;
+
+  const reply = () => {
+    setViewReply(!viewReply);
+  }
 
   return (
     <section
@@ -66,7 +72,8 @@ function CommentSection({ className }: Props) {
                 participationImages={participationImages}
               />
               <SpotSlide images={images} />
-              <MoreButton title="대댓글 보기" />
+              {viewReply && <ReplySection participationId={participationId} />}
+              <MoreButton title="대댓글 보기" onClick={reply} state={viewReply}/>
             </div>
           );
         },

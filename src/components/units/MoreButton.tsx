@@ -3,9 +3,10 @@ import Icon from '@/components/icons';
 interface Props {
   onClick?: () => void;
   title: string;
+  state: boolean;
 }
 
-function MoreButton({ onClick, title }: Props) {
+function MoreButton({ onClick, title, state }: Props) {
   return (
     <button
       type="button"
@@ -14,7 +15,8 @@ function MoreButton({ onClick, title }: Props) {
     >
       {title}
       <div className="flex h-[24px] w-[24px] items-center justify-center rounded-full bg-gray-4 p-[3px]">
-        <Icon.DownArrow fill="white" />
+        {state ? <Icon.UpArrow fill="white" />
+          : <Icon.DownArrow fill="white" />}
       </div>
     </button>
   );

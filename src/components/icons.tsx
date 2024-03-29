@@ -14,6 +14,7 @@ import Camera from '@/assets/icons/camera.svg?react';
 import Walk from '@/assets/icons/walk.svg?react';
 import Search from '@/assets/icons/search.svg?react';
 import Location from '@/assets/icons/location.svg?react';
+import ReplyArrow from '@/assets/icons/replyArrow.svg?react';
 
 const Icon = {
   Close,
@@ -32,6 +33,7 @@ const Icon = {
   Bicycle,
   Search,
   Location,
+  ReplyArrow,
 };
 
 export default Icon;
