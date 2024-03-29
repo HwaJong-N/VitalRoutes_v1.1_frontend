@@ -5,7 +5,7 @@ import DeletePopup from './DeletePopup';
 import { storeFamilyCommentMode } from '@/store/challenge/commentStore';
 
 interface Props {
-  id: number;
+  id: number; // 참여 ID
   memberId: number;
 }
 
@@ -52,7 +52,7 @@ function CommentSelectPopup({ id, memberId }: Props) {
         :
         <>
           <button type="button">
-            댓글 작성
+            숨기기
           </button>
           <button type="button">
             신고하기

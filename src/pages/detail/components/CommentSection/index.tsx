@@ -9,6 +9,7 @@ import { Comment as CommentType } from '@/types/challenge';
 import MoreButton from '@/components/units/MoreButton';
 import BearLoading from '@/components/common/Loading/BearLoading';
 import ReplySection from '@/pages/detail/components/ReplySection';
+import ReplyEditorBox from '@/pages/detail/components/ReplySection/Reply/ReplyEditorBox.tsx';
 
 interface Props {
   className?: string;
@@ -72,6 +73,7 @@ function CommentSection({ className }: Props) {
                 participationImages={participationImages}
               />
               <SpotSlide images={images} />
+              <ReplyEditorBox pId={participationId} />
               {viewReply && <ReplySection participationId={participationId} />}
               <MoreButton title="대댓글 보기" onClick={reply} state={viewReply}/>
             </div>

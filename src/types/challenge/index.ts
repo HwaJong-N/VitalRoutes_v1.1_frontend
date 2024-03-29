@@ -96,3 +96,9 @@ export interface Reply {
   remainFlag: boolean;
   totalCount: number;
 }
+
+
+export interface ReplyWrite {
+  participationId: number;
+  content: string;
+}
