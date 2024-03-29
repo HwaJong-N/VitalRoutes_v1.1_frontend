@@ -7,7 +7,6 @@ import { Challenge } from '@/types/challenge';
 
 function useChallengeListInfinite(selectedTag: string, searchQuery:string) {
   const queryKey = [QUERY_KEY.challengeList, selectedTag, searchQuery];
-  console.log("searchQuery = ", searchQuery);
 
   const queryFn = async (page: number) => {
     const { data } = await axios.get<{ data: Challenge }>(
