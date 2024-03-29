@@ -3,6 +3,7 @@ import useCommentDeleteMutation from '@/hooks/challenge/useCommentDeleteMutation
 import usePopup from '@/hooks/usePopup';
 import DeletePopup from './DeletePopup';
 import { storeFamilyCommentMode } from '@/store/challenge/commentStore';
+import useHideComment from '@/hooks/challenge/useHideComment.ts';
 
 interface Props {
   id: number; // 참여 ID
@@ -12,6 +13,7 @@ interface Props {
 function CommentSelectPopup({ id, memberId }: Props) {
   const useCommentModeStore = storeFamilyCommentMode(id);
   const { mutate: mutateDeletion } = useCommentDeleteMutation(id);
+  const { mutate: mutateHide } = useHideComment(id);
   const { setMode } = useCommentModeStore();
   const { openPopup, closePopup } = usePopup();
   const userInfo = localStorage.getItem('loginInfo');
@@ -34,6 +36,11 @@ function CommentSelectPopup({ id, memberId }: Props) {
     );
   };
 
+  const hideComment = () => {
+    mutateHide();
+    window.location.reload();
+  }
+
   const modifyComment = () => {
     setMode('modify');
   };
@@ -51,7 +58,7 @@ function CommentSelectPopup({ id, memberId }: Props) {
         </>
         :
         <>
-          <button type="button">
+          <button type="button" onClick={hideComment}>
             숨기기
           </button>
           <button type="button">
