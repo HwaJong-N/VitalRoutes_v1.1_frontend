@@ -40,7 +40,7 @@ function ChallengeListSection({ selectedTag, searchQuery }: Props) {
           />
           <div className="text-[24px] font-bold">등록된 챌린지가 없습니다.</div>
         </div>
-        <Link to="/challenge/registration">
+        <Link to="/registration">
           <Button variant="third-c">챌린지 등록하러 가기</Button>
         </Link>
       </div>

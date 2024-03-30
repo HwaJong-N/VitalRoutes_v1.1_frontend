@@ -35,7 +35,7 @@ function ChallengeEditPage() {
             <>
               <ChallengeEditorSection title={challenge.title} content={challenge.content}/>
               <ChallengeTransportSection type={challenge.type} />
-              <ChallengeTagSection tagList={challenge.tagList} />
+              <ChallengeTagSection />
               <Button type="submit" disabled={isPending} onClick={modifyChallenge}>
                 수정하기
               </Button>

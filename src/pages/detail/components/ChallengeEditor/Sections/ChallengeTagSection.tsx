@@ -2,13 +2,8 @@ import { useFormContext } from 'react-hook-form';
 import { twMerge } from 'tailwind-merge';
 import { BUTTONS_CLASSES } from '@/components/common/Button';
 import { ChallengeUpdateForm } from '@/types/posts';
-import { useEffect } from 'react';
 
-interface Props {
-  tagList: string[]
-}
-
-function ChallengeTagSection({ tagList } : Props) {
+function ChallengeTagSection() {
   const ACTIVE_COLOR = 'bg-green-1';
   const TAGS = [
     '활동적인',
@@ -22,12 +17,6 @@ function ChallengeTagSection({ tagList } : Props) {
   ];
   const { register, watch } = useFormContext<ChallengeUpdateForm>();
 
-  useEffect(() => {
-    tagList.forEach((tag, idx) => {
-      register(`tags.${idx}`, { value: tag }); // 각 태그 등록
-    });
-  }, [register, tagList]);
-
   return (
     <div>
       <div className="leadin-[150%] mb-[32px] font-bold">
@@ -35,10 +24,9 @@ function ChallengeTagSection({ tagList } : Props) {
       </div>
       <div className="flex gap-0">
         <div className="flex flex-wrap gap-2">
-          {TAGS.map((tag, idx) => {
-            // 선택된 태그 여부 확인
+          {TAGS.map((tag) => {
             const watchedTag = watch('tags');
-            const isSelected = watchedTag && watchedTag.includes(tag);
+            const selectedTag = watchedTag && watchedTag.includes(tag);
 
             return (
               <label
@@ -47,17 +35,17 @@ function ChallengeTagSection({ tagList } : Props) {
                 className={twMerge(
                   BUTTONS_CLASSES['tag-a'],
                   'cursor-pointer',
-                  isSelected && ACTIVE_COLOR, // 선택된 태그에만 활성화 클래스 적용
+                  selectedTag && ACTIVE_COLOR,
                 )}
               >
                 {tag}
                 <input
                   id={tag}
-                  {...register(`tags.${idx}`)}
+                  {...register('tags')}
                   value={tag}
                   type="checkbox"
+                  defaultChecked={selectedTag}
                   hidden
-                  checked={isSelected} // 선택된 태그의 체크 여부 설정
                 />
               </label>
             );
