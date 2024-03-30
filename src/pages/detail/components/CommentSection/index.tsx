@@ -19,7 +19,7 @@ function CommentSection({ className }: Props) {
   const { id } = useParams<{ id: string }>();
   const { data, isLoading, fetchNextPage, hasNextPage } = useComment(id || '0');
   const { ref, inView } = useInView();
-  const [viewReply, setViewReply] = useState(false);
+  const [viewReplies, setViewReplies] = useState<{ [key: string]: boolean }>({});
 
   useEffect(() => {
     if (hasNextPage && inView) fetchNextPage();
@@ -36,9 +36,12 @@ function CommentSection({ className }: Props) {
 
   if (filterdComments.length === 0) return null;
 
-  const reply = () => {
-    setViewReply(!viewReply);
-  }
+  const toggleReply = (participationId: number) => {
+    setViewReplies((prev) => ({
+      ...prev,
+      [participationId]: !prev[participationId],
+    }));
+  };
 
   return (
     <section
@@ -74,8 +77,8 @@ function CommentSection({ className }: Props) {
               />
               <SpotSlide images={images} />
               <ReplyEditorBox pId={participationId} />
-              {viewReply && <ReplySection participationId={participationId} />}
-              <MoreButton title="대댓글 보기" onClick={reply} state={viewReply}/>
+              {viewReplies[participationId] && <ReplySection participationId={participationId} />}
+              <MoreButton title="대댓글 보기" onClick={() => toggleReply(participationId)} state={viewReplies[participationId]} />
             </div>
           );
         },

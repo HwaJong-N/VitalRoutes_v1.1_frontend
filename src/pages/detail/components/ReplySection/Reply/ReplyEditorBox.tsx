@@ -11,9 +11,9 @@ interface Props {
 
 function ReplyEditorBox({pId} : Props) {
   const methods = useForm<ReplyWrite>();
-  const { register, getValues, reset } = methods;
+  const { register, getValues, handleSubmit, reset } = methods;
   const { mutate, isPending, isSuccess } = useReplyWriteMutation();
-  const replyRegister = register('content', { required: true });
+  const replyRegister = register('comment', { required: true });
 
   useEffect(() => {
     if (isSuccess) reset();
@@ -21,23 +21,24 @@ function ReplyEditorBox({pId} : Props) {
 
 
   const writeReply = () => {
+    const {comment} = getValues();
     const saveData = {
       participationId: pId,
-      content: getValues('content'),
+      content: comment
     }
     mutate(saveData);
   }
 
 
   return (
-    <form className="flex w-full flex-col gap-[56px]">
+    <form className="flex w-full flex-col gap-[56px]" onSubmit={handleSubmit(writeReply)}>
       <FormProvider {...methods}>
         <Input
           {...replyRegister}
           placeholder="Add a comment"
           autoComplete="off"
           button={
-            <Button disabled={isPending} type="submit" variant="third-b" onClick={writeReply}>
+            <Button disabled={isPending} type="submit" variant="third-b">
               Post
             </Button>
           }

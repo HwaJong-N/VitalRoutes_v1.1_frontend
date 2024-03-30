@@ -98,7 +98,7 @@ function LoginPage() {
             type="password"
             autoComplete="off"
             id="login_password"
-            placeholder="비밀번호 8~16자리를 입력해주세요"
+            placeholder="비밀번호 8~20자리를 입력해주세요"
             className="h-[58px] w-full"
             {...register('password', {
               required: '※ 비밀번호 입력란이 비어있습니다.',
@@ -117,7 +117,7 @@ function LoginPage() {
           </Link>
         </div>
         <span className="text-[13px] text-gray-2">
-          비밀번호는 8~16자리이며, 대문자, 소문자, 숫자 중 최소 2종류를 포함해야
+          비밀번호는 8~20자리이며, 대문자, 소문자, 숫자를 모두 포함해야
           합니다.
         </span>
 

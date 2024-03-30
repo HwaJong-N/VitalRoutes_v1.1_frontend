@@ -13,6 +13,7 @@ type ButtonVariants =
   | 'tab-a'
   | 'tag-a'
   | 'tag-b'
+  | 'tag-c'
   | 'popup'
   | 'popup-point';
 
@@ -44,6 +45,8 @@ export const BUTTONS_CLASSES = {
     'rounded-full font-bold px-[12px] py-[12px] inline-flex h-[40px] justify-center items-center shrink-0 bg-gray-6 hover:bg-green-1 disabled:bg-gray-5 disabled:text-gray-3 text-[14px]',
   'tag-b':
     'rounded-full font-bold px-[12px] py-[8px] inline-flex h-[40px] justify-center items-center shrink-0 bg-gray-6 hover:bg-gray-1 hover:text-green-1 disabled:bg-gray-5 disabled:text-gray-3 text-[14px]',
+  'tag-c':
+    'rounded-full font-bold px-[16px] py-[8px] inline-flex h-[40px] justify-center items-center shrink-0 bg-gray-6 hover:bg-gray-1 disabled:bg-gray-5 disabled:text-gray-3 text-[16px]',
   'popup-point':
     'font-bold text-[20px] bg-green-1 h-[60px] w-full p-[32px] flex justify-center items-center',
   popup:

@@ -100,5 +100,5 @@ export interface Reply {
 
 export interface ReplyWrite {
   participationId: number;
-  content: string;
+  comment: string;
 }

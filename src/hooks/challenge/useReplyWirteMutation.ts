@@ -1,6 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
-import QUERY_KEY from '@/constants/queryKey.ts';
 
 export default function useReplyWriteMutation() {
   const queryClient = useQueryClient();
@@ -11,9 +10,7 @@ export default function useReplyWriteMutation() {
   }) => axios.post('/comments/save', data);
 
   const onSuccess = () => {
-    queryClient.invalidateQueries({
-      queryKey: [QUERY_KEY.comment],
-    });
+    queryClient.clear();
   };
 
   return useMutation({ mutationFn, onSuccess });
