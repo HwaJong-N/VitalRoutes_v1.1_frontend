@@ -76,7 +76,7 @@ function CommentSection({ className }: Props) {
                 participationImages={participationImages}
               />
               <SpotSlide images={images} />
-              <ReplyEditorBox pId={participationId} />
+              <ReplyEditorBox pId={participationId} viewState={viewReplies[participationId]} onViewRepliesChange={toggleReply}/>
               {viewReplies[participationId] && <ReplySection participationId={participationId} />}
               <MoreButton title="대댓글 보기" onClick={() => toggleReply(participationId)} state={viewReplies[participationId]} />
             </div>

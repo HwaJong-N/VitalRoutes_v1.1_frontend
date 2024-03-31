@@ -10,7 +10,7 @@ function useReplyModifyMutation(replyId: number) {
 
   const onSuccess = () => {
     queryClient.invalidateQueries({
-      queryKey: [QUERY_KEY.reply],
+      queryKey: [QUERY_KEY.reply, replyId],
     });
   };
 

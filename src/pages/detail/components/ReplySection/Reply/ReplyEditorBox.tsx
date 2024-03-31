@@ -7,9 +7,11 @@ import Button from '@/components/common/Button.tsx';
 
 interface Props {
   pId: number;
+  viewState: boolean;
+  onViewRepliesChange: (participationId: number) => void;
 }
 
-function ReplyEditorBox({pId} : Props) {
+function ReplyEditorBox({ pId, viewState, onViewRepliesChange }: Props) {
   const methods = useForm<ReplyWrite>();
   const { register, getValues, handleSubmit, reset } = methods;
   const { mutate, isPending, isSuccess } = useReplyWriteMutation();
@@ -20,13 +22,17 @@ function ReplyEditorBox({pId} : Props) {
   }, [isSuccess]);
 
 
-  const writeReply = () => {
-    const {comment} = getValues();
+  const writeReply = async () => {
+    const { comment } = getValues();
     const saveData = {
       participationId: pId,
       content: comment
     }
-    mutate(saveData);
+    await mutate(saveData);
+
+    if (!viewState) {
+      onViewRepliesChange(pId); // 대댓글이 작성된 후 댓글을 보여지게 처리
+    }
   }
 
 
